@@ -1,51 +1,64 @@
 <app-loader [visible]="isVisible"></app-loader>
+
 <div class="test-body">
-  <h2>{{ pageTitle }}</h2>
-  <div class="search-wrapper">
-    <input type="text" class="searchInput" #inputRef (keyup.enter)="searchHotel(inputRef.value)" placeholder="Search: name of countries, cities, districts, places, etc… " />
+  <ng-container  *ngIf="searchResults">
 
-    <div  class="choose-wrapper" *ngIf="searchValue">
-      <h3>Chose your destination </h3>
-      <button class="choose-button reset" (click)="resetSearch()">Reset search</button>
-      <button
-        class="choose-button"
-        value="{{item.destinationId}}"
-        *ngFor="let item of searchValue "
-        (click)="showPage(pageNumber = 1, item.destinationId)"
-        [ngClass]="destinationId === item.destinationId ? 'active' : ''"
-       [innerHTML]="item.caption"></button>
+    <h2>{{ pageTitle }}</h2>
+
+    <!-- hotelSearch.component TODO -->
+    <div class="search-wrapper">
+      <input type="text" class="searchInput"   placeholder="Search: name of countries, cities, districts, places, etc… "
+             #inputRef
+             (keyup.enter)="searchHotel(inputRef.value)"
+      />
+      <div  class="choose-wrapper" *ngIf="searchValue">
+        <h3>Chose your destination </h3>
+        <button class="choose-button reset" (click)="resetSearch()">Reset search</button>
+        <button
+          class="choose-button"
+          value="{{item.destinationId}}"
+          *ngFor="let item of searchValue "
+          (click)="showPage(pageNumber = 1, item.destinationId)"
+          [ngClass]="destinationId === item.destinationId ? 'active' : ''"
+         [innerHTML]="item.caption"></button>
+      </div>
     </div>
-  </div>
+    <!-- /hotelSearch.component -->
 
-  <ul class="hotel-list" *ngIf="searchResults">
-    <li  class="hotel-list--card"
-         *ngFor="let hotel of searchResults  | paginate: {
-                                                itemsPerPage: apiBody.searchResults.pagination.nextPageStartIndex,
-                                                currentPage: pageNumber,
-                                                totalItems: apiBody.searchResults.totalCount
-    }">
-      <ng-template [ngIf]="hotel.optimizedThumbUrls">
-        <div class="hotel-list--card_header"
-             [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}">
+    <!-- hotelList.component  TODO -->
+    <ul class="hotel-list" *ngIf="searchResults">
+      <li  class="hotel-list--card"
+           *ngFor="let hotel of searchResults  | paginate: {
+                                                  itemsPerPage: apiBody.searchResults.pagination.nextPageStartIndex,
+                                                  currentPage: pageNumber,
+                                                  totalItems: apiBody.searchResults.totalCount
+      }">
+        <ng-template [ngIf]="hotel.optimizedThumbUrls">
+          <div class="hotel-list--card_header"
+               [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}">
+          </div>
+        </ng-template>
+        <div class="hotel-list--card_body">
+          <h3>{{ hotel.name }}</h3>
+          <span>
+      <fa-icon [icon]="faLocationArrow"></fa-icon> {{hotel.address.streetAddress }} - {{ hotel.address.locality }} - {{ hotel.address.postalCode }}
+    </span>
         </div>
-      </ng-template>
-      <div class="hotel-list--card_body">
-        <h3>{{ hotel.name }}</h3>
-        <span>
-    <fa-icon [icon]="faLocationPin"></fa-icon> {{hotel.address.streetAddress }} - {{ hotel.address.locality }} - {{ hotel.address.postalCode }}
-  </span>
-      </div>
-      <div class="hotel-list--card_footer">
-        <div class="rating">
-          <span title="Rating {{hotel.starRating}} of 5" class="score" [ngClass]="'s'+hotel.starRating" ></span>
+        <div class="hotel-list--card_footer">
+          <div class="rating">
+            <span title="Rating {{hotel.starRating}} of 5" class="score" [ngClass]="'s'+hotel.starRating" ></span>
+          </div>
+          <div class="price">
+            <small>From </small> {{ hotel.ratePlan?.price.current || 'NaN' }}
+          </div>
         </div>
-        <div class="price">
-          <small>From </small> {{ hotel.ratePlan?.price.current || 'NaN' }}
-        </div>
-      </div>
-    </li>
-  </ul>
-  <div style="text-align: center; font-size: 1rem;">
-    <pagination-controls (pageChange)="showPage(pageNumber = $event , destinationId)"></pagination-controls>
-  </div>
+      </li>
+    </ul>
+    <!-- /hotelList.component -->
+
+    <div style="text-align: center; font-size: 1rem;">
+      <pagination-controls (pageChange)="showPage(pageNumber = $event , destinationId)"></pagination-controls>
+    </div>
+  </ng-container>
+
 </div>

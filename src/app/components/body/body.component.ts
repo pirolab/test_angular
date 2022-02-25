@@ -7,7 +7,7 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {DataService} from "./body.service";
 import{ Constants } from '../../config/constants';
-import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
+import {faLocationArrow} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'bodyComponent',
@@ -17,15 +17,18 @@ import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
 })
 export class BodyComponent  implements OnInit {
   searchResults: any;
-  pageNumber : number = 1;
   apiBody: any;
-  pageTitle: any;
+  searchValue : any;
+
   isVisible: boolean = true;
-  searchValue : string | any;
+
+  pageTitle: string = '';
+  pageNumber : number = 1;
   destinationId : number = 10233105;
   pageSize : number =  12;
   defaultDestId : number = Constants.API_DEST_ID;
-  faLocationPin = faLocationPin;
+  faLocationArrow = faLocationArrow;
+
   @ViewChild('inputRef')inputRef!: ElementRef;
 
   constructor(private _http: HttpClient, private dataService : DataService){}
@@ -52,7 +55,8 @@ export class BodyComponent  implements OnInit {
 
   showPage ( pageNumber : number , destinationId : number ){
     this.isVisible = false;
-    let params = `destinationId=${destinationId ? destinationId : this.destinationId}&pageNumber=${pageNumber}&pageSize=${this.pageSize}`
+    let destId = destinationId ? destinationId : this.destinationId;
+    let params = `destinationId=${destId}&pageNumber=${pageNumber}&pageSize=${this.pageSize}`
     this.dataService.getData(params).subscribe((hotelData : any)  => {
         this.searchResults = hotelData.data.body.searchResults.results;
         this.apiBody = hotelData.data.body;
