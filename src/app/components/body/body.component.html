@@ -1,0 +1,51 @@
+<app-loader [visible]="isVisible"></app-loader>
+<div class="test-body">
+  <h2>{{ pageTitle }}</h2>
+  <div class="search-wrapper">
+    <input type="text" class="searchInput" #box (keyup.enter)="searchHotel(box.value)" placeholder="Search: name of countries, cities, districts, places, etc… " />
+
+    <div  class="choose-wrapper" *ngIf="searchValue">
+      <h3>Chose your destination</h3>
+      <button class="choose-button reset" (click)="box.value = ''; searchHotel(''); showPage(pageNumber = 1 , defaultDestId)">Reset search</button>
+      <button
+        class="choose-button"
+        value="{{item.destinationId}}"
+        *ngFor="let item of searchValue"
+        (click)="showPage(1, item.destinationId)"
+        [ngClass]="destinationId === item.destinationId ? 'active' : ''"
+        [innerHTML]="item.caption"></button>
+    </div>
+  </div>
+
+  <ul class="hotel-list" *ngIf="searchResults">
+    <li  class="hotel-list--card"
+         *ngFor="let hotel of searchResults  | paginate: {
+                                                itemsPerPage: apiBody.searchResults.pagination.nextPageStartIndex,
+                                                currentPage: pageNumber,
+                                                totalItems: apiBody.searchResults.totalCount
+    }">
+      <ng-template [ngIf]="hotel.optimizedThumbUrls">
+        <div class="hotel-list--card_header"
+             [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}">
+        </div>
+      </ng-template>
+      <div class="hotel-list--card_body">
+        <h3>{{ hotel.name }}</h3>
+        <span>
+    {{ hotel.address.streetAddress }} - {{ hotel.address.locality }} - {{ hotel.address.postalCode }}
+  </span>
+      </div>
+      <div class="hotel-list--card_footer">
+        <div class="rating">
+          <small>Rating</small>  {{ hotel.starRating }} <small>of</small> 5
+        </div>
+        <div class="price">
+          <small>From </small> {{ hotel.ratePlan?.price.current || 'NaN' }}
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div style="text-align: center; font-size: 1rem;">
+    <pagination-controls (pageChange)="showPage(pageNumber = $event , destinationId)"></pagination-controls>
+  </div>
+</div>
