@@ -7,7 +7,7 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {DataService} from "./body.service";
 import{ Constants } from '../../config/constants';
-import {faLocationArrow} from '@fortawesome/free-solid-svg-icons';
+import {faLocationArrow , faLocationPin ,faRotateRight} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'bodyComponent',
@@ -27,7 +27,10 @@ export class BodyComponent  implements OnInit {
   destinationId : number = 10233105;
   pageSize : number =  12;
   defaultDestId : number = Constants.API_DEST_ID;
+
   faLocationArrow = faLocationArrow;
+  faLocationPin = faLocationPin;
+  faRotateRight = faRotateRight;
 
   @ViewChild('inputRef')inputRef!: ElementRef;
 

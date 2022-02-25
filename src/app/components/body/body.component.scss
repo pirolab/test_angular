@@ -19,7 +19,13 @@
     display: flex;
     flex-direction: column;
     .searchInput {
-      width: 60%;
+      width: 100%;
+      @media (min-width: 600px){
+        width: 80%;
+      }
+      @media (min-width: 1024px){
+        width: 60%;
+      }
       padding: 15px 10px;
       border: 1px solid #ddd;
       margin: 0 auto 20px auto;
@@ -51,21 +57,41 @@
         border: 1px solid #ddd;
         border-radius: 50px;
         cursor: pointer;
-
+        width: 100%;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @media (min-width: 600px){
+          width: auto;
+          text-align: center;
+          overflow: visible;
+        }
+        & fa-icon{
+          color: #2199e8;
+        }
         &:hover {
           background: #fff;
           border-color: #aaa;
+          color: #666;
         }
 
         &.active {
           background: #2199e8;
           color: white;
           border-color: transparent;
+          font-weight: 700;
+          & fa-icon{
+            color: #fff;
+          }
         }
         &.reset {
           background: #111;
           color: white;
           border-color: transparent;
+          & fa-icon{
+            color: #fff;
+          }
         }
       }
     }
@@ -77,6 +103,16 @@
     justify-content: space-around;
     margin: 0;
     padding: 0;
+    position: relative;
+    &--card_onSearch{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgb(255  255 255 / 70%);
+      z-index: 1;
+    }
     &--card{
       box-shadow: 0 2px 2px rgba(0,0,0,.2);
       border-radius: 8px;
