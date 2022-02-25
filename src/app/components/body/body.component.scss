@@ -136,3 +136,55 @@
   }
 }
 
+.score {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: #ccc;
+  position: relative;
+}
+.score::before,
+.score::after {
+  content: "\2605\2605\2605\2605\2605";
+  display: block;
+}
+.score::after {
+  color: gold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.score.s0::after {
+  width: 0%;
+}
+.score.s0\.5::after {
+  width: 10%;
+}
+.score.s1::after {
+  width: 20%;
+}
+.score.s1\.5::after {
+  width: 30%;
+}
+.score.s2::after {
+  width: 40%;
+}
+.score.s2\.5::after {
+  width: 50%;
+}
+.score.s3::after {
+  width: 60%;
+}
+.score.s3\.5::after {
+  width: 70%;
+}
+.score.s4::after {
+  width: 80%;
+}
+.score.s4\.5::after {
+  width: 90%;
+}
+.score.s5::after {
+  width: 100%;
+}

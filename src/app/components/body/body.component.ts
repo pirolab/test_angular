@@ -1,7 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {DataService} from "./body.service";
 import{ Constants } from '../../config/constants';
+import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'bodyComponent',
@@ -19,12 +25,21 @@ export class BodyComponent  implements OnInit {
   destinationId : number = 10233105;
   pageSize : number =  12;
   defaultDestId : number = Constants.API_DEST_ID;
+  faLocationPin = faLocationPin;
+  @ViewChild('inputRef')inputRef!: ElementRef;
 
   constructor(private _http: HttpClient, private dataService : DataService){}
 
   ngOnInit() {
     this.showPage(1 , this.destinationId);
   }
+
+  resetSearch(){
+    this.showPage(this.pageNumber = 1 , this.defaultDestId);
+    this.inputRef.nativeElement.value = '';
+    this.searchValue =''
+  }
+
   searchHotel ( query : string){
     this.isVisible = false;
     let params = `query=${query}`
