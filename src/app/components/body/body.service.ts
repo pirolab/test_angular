@@ -29,6 +29,15 @@ export class DataService {
     })
   }
 
+  getDetailImages( params : string){
+    return  this._http.get(`${Constants.API_ENDPOINT_DETAIL_IMAGES}/?${params}` , {
+      "headers": {
+        "x-rapidapi-host": Constants.API_BASE_URL,
+        "x-rapidapi-key": Constants.API_AUTH_KEY
+      }
+    })
+  }
+
   getData(params : string) : Observable<any>{
     return  this._http.get(`${Constants.API_ENDPOINT_LIST}/?${params}` , {
       "headers": {

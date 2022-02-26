@@ -24,7 +24,6 @@
            totalItems: apiBody.searchResults.totalCount
             }"
            id="{{hotel.id}}"
-      (click)="showDetail({hotelId :hotel.id})"
       >
         <ng-template [ngIf]="hotel.optimizedThumbUrls">
           <div class="hotel-list--card_header" [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}">
@@ -43,6 +42,8 @@
           <div class="price">
             <small>From </small> {{ hotel.ratePlan?.price.current || '0' }}
           </div>
+          <hr />
+          <button class="card-button" (click)="showDetail({hotelId :hotel.id})">See Details <fa-icon [icon]="faArrowRight"></fa-icon></button>
         </div>
       </li>
     </ul>
