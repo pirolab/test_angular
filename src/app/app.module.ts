@@ -9,6 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { LoaderComponent } from './components/loader/loader.component';
 import {FormsModule} from "@angular/forms";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {HotelSearchComponent} from "./components/body/hotel-search/hotel-search.component";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BodyComponent,
     FooterComponent,
     LoaderComponent,
+    HotelSearchComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+<div class="search-wrapper">
+  <input type="text" class="searchInput"  placeholder="{{placeHolder}}"
+         #inputRef
+         (keyup.enter)="searchHotel(inputRef.value)"
+  />
+  <div  class="choose-wrapper" *ngIf="searchResult">
+    <h3>Chose your destination </h3>
+    <button class="choose-button reset" (click)="resetSearch()">Reset search <fa-icon [icon]="faRotateRight"></fa-icon></button>
+    <button
+      class="choose-button"
+      *ngFor="let item of searchResult "
+      (click)="showPage.emit({pageNumber : 1, destinationId : item.destinationId});"
+      [ngClass]="destinationId === item.destinationId ? 'active' : ''">
+      <fa-icon [icon]="faLocationPin"></fa-icon> <span style="padding-left: 5px;" [innerHTML]="item.caption + ''"></span>
+    </button>
+  </div>
+</div>

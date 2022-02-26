@@ -7,7 +7,7 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {DataService} from "./body.service";
 import{ Constants } from '../../config/constants';
-import {faLocationArrow , faLocationPin ,faRotateRight} from '@fortawesome/free-solid-svg-icons';
+import {faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'bodyComponent',
@@ -18,53 +18,41 @@ import {faLocationArrow , faLocationPin ,faRotateRight} from '@fortawesome/free-
 export class BodyComponent  implements OnInit {
   searchResults: any;
   apiBody: any;
-  searchValue : any;
-
   isVisible: boolean = true;
-
+  searchVal: any;
   pageTitle: string = '';
   pageNumber : number = 1;
   destinationId : number = 10233105;
   pageSize : number =  12;
   defaultDestId : number = Constants.API_DEST_ID;
-
   faLocationArrow = faLocationArrow;
-  faLocationPin = faLocationPin;
-  faRotateRight = faRotateRight;
-
   @ViewChild('inputRef')inputRef!: ElementRef;
 
   constructor(private _http: HttpClient, private dataService : DataService){}
 
   ngOnInit() {
-    this.showPage(1 , this.destinationId);
+    this.showPage({ pageNumber:1, destinationId: this.destinationId });
+  }
+  getSearchVal($event : any) {
+    this.searchVal = $event;
+    console.log(this.searchVal)
+  }
+  getVisible($event : any) {
+    this.isVisible = $event;
+    console.log(this.isVisible)
   }
 
-  resetSearch(){
-    this.showPage(this.pageNumber = 1 , this.defaultDestId);
-    this.inputRef.nativeElement.value = '';
-    this.searchValue =''
-  }
-
-  searchHotel ( query : string){
+  showPage ( $event : any){
+    console.log($event)
     this.isVisible = false;
-    let params = `query=${query}`
-    this.dataService.searchData(params).subscribe((hotelSearch : any)  => {
-        this.searchValue = hotelSearch?.suggestions[0].entities || null;
-      },
-      (err : any) => console.error(err),
-      () => this.isVisible = true);
-  }
-
-  showPage ( pageNumber : number , destinationId : number ){
-    this.isVisible = false;
-    let destId = destinationId ? destinationId : this.destinationId;
-    let params = `destinationId=${destId}&pageNumber=${pageNumber}&pageSize=${this.pageSize}`
+    let destId = $event.destinationId ? $event.destinationId : this.destinationId;
+    let params = `destinationId=${destId}&pageNumber=${$event.pageNumber}&pageSize=${this.pageSize}`
     this.dataService.getData(params).subscribe((hotelData : any)  => {
         this.searchResults = hotelData.data.body.searchResults.results;
         this.apiBody = hotelData.data.body;
         this.pageTitle = this.apiBody.header;
-        this.destinationId = destinationId ? destinationId : this.destinationId;
+        this.destinationId = $event.destinationId ? $event.destinationId : this.destinationId;
+        this.pageNumber = $event.pageNumber;
       },
       (err : any) => console.error(err),
       () => this.isVisible = true);
