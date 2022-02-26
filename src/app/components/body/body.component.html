@@ -3,8 +3,6 @@
 <div class="test-body">
   <ng-container  *ngIf="searchResults">
 
-    <h2>{{ pageTitle }}</h2>
-
     <hotel-search
       [destinationId]="destinationId"
       [pageNumber]="pageNumber"
@@ -13,6 +11,7 @@
       (isVible) ="getVisible($event)">
     </hotel-search>
 
+    <h2>{{ pageTitle }}</h2>
 
     <!-- hotelList.component  TODO -->
     <ul class="hotel-list" *ngIf="searchResults">
@@ -23,7 +22,10 @@
            itemsPerPage: apiBody.searchResults.pagination.nextPageStartIndex,
            currentPage: pageNumber,
            totalItems: apiBody.searchResults.totalCount
-            }">
+            }"
+           id="{{hotel.id}}"
+      (click)="showDetail({hotelId :hotel.id})"
+      >
         <ng-template [ngIf]="hotel.optimizedThumbUrls">
           <div class="hotel-list--card_header" [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}">
           </div>

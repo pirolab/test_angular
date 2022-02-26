@@ -17,6 +17,8 @@ import {faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 })
 export class BodyComponent  implements OnInit {
   searchResults: any;
+  getDetail : any;
+  hotelId: any;
   apiBody: any;
   isVisible: boolean = true;
   searchVal: any;
@@ -33,17 +35,23 @@ export class BodyComponent  implements OnInit {
   ngOnInit() {
     this.showPage({ pageNumber:1, destinationId: this.destinationId });
   }
-  getSearchVal($event : any) {
-    this.searchVal = $event;
-    console.log(this.searchVal)
-  }
-  getVisible($event : any) {
-    this.isVisible = $event;
-    console.log(this.isVisible)
+
+  getSearchVal($event : any) {this.searchVal = $event;}
+
+  getVisible($event : any) {this.isVisible = $event;}
+
+  showDetail($event : any){
+    this.isVisible = false;
+    let params = `id=${$event.hotelId}`;
+    this.dataService.getDetails(params).subscribe((hotelDetail : any)  => {
+        this.getDetail = hotelDetail.data.body.propertyDescription;
+        console.log(this.getDetail)
+      },
+      (err : any) => console.error(err),
+      () => this.isVisible = true);
   }
 
   showPage ( $event : any){
-    console.log($event)
     this.isVisible = false;
     let destId = $event.destinationId ? $event.destinationId : this.destinationId;
     let params = `destinationId=${destId}&pageNumber=${$event.pageNumber}&pageSize=${this.pageSize}`
