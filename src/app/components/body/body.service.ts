@@ -20,6 +20,15 @@ export class DataService {
     })
   }
 
+  getData(params : string) : Observable<any>{
+    return  this._http.get(`${Constants.API_ENDPOINT_LIST}/?${params}` , {
+      "headers": {
+        "x-rapidapi-host": Constants.API_BASE_URL,
+        "x-rapidapi-key": Constants.API_AUTH_KEY
+      }
+    })
+  }
+
   getDetails( params : string){
     return  this._http.get(`${Constants.API_ENDPOINT_DETAIL}/?${params}` , {
       "headers": {
@@ -38,12 +47,4 @@ export class DataService {
     })
   }
 
-  getData(params : string) : Observable<any>{
-    return  this._http.get(`${Constants.API_ENDPOINT_LIST}/?${params}` , {
-      "headers": {
-        "x-rapidapi-host": Constants.API_BASE_URL,
-        "x-rapidapi-key": Constants.API_AUTH_KEY
-      }
-    })
-  }
 }

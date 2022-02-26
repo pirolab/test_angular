@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class LoaderComponent implements OnInit {
 
-  @Input() visible : boolean | undefined;
+  @Input() pageIsvisible : boolean | undefined;
 
   constructor() { }
 

@@ -23,32 +23,33 @@ export class HotelSearchComponent implements OnInit {
   defaultDestId : number = Constants.API_DEST_ID;
   searchResult : any;
   placeHolder : string = 'Search: name of countries, cities, districts, places, etc…';
+
   @Input() destinationId : number | undefined;
   @Input() pageNumber : number| undefined;
   @Output() searchValue = new EventEmitter<any>();
   @Output() showPage = new EventEmitter<any>();
-  @Output() isVible = new EventEmitter<any>();
+  @Output() isVisible = new EventEmitter<any>();
   @ViewChild('inputRef')inputRef!: ElementRef;
 
   constructor( private dataService : DataService){}
 
   ngOnInit() {}
 
-  resetSearch() : void{
+  resetSearch() {
     this.showPage.emit({pageNumber : 1, destinationId : this.defaultDestId});
+    this.searchValue.emit('');
     this.inputRef.nativeElement.value = '';
     this.searchResult = '';
-    this.searchValue.emit('');
   }
-  searchHotel ( query : string){
-    this.isVible.emit(false);
+  searchHotel (query : string){
+    this.isVisible.emit(false);
     let params = `query=${query}`
     this.dataService.searchData(params).subscribe((hotelSearch : any)  => {
         this.searchResult = hotelSearch?.suggestions[0].entities || null;
         this.searchValue.emit(this.searchResult);
       },
       (err : any) => console.error(err),
-      () => this.isVible.emit(true));
+      () => this.isVisible.emit(true));
   }
 
 }

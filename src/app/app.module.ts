@@ -7,9 +7,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LoaderComponent } from './components/loader/loader.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {HotelSearchComponent} from "./components/body/hotel-search/hotel-search.component";
+import { HotelSearchComponent } from "./components/body/hotel-search/hotel-search.component";
 
 
 @NgModule({

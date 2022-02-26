@@ -1,4 +1,4 @@
-<app-loader [visible]="isVisible"></app-loader>
+<app-loader [pageIsvisible]="isVisible"></app-loader>
 
 <div class="test-body">
   <ng-container  *ngIf="searchResults">
@@ -16,12 +16,11 @@
     <!-- hotelList.component  TODO -->
     <ul class="hotel-list" *ngIf="searchResults">
       <li class="hotel-list--card_onSearch" *ngIf="searchVal && destinationId === defaultDestId"></li>
-      <li  class="hotel-list--card"
-           *ngFor="let hotel of searchResults  |
+      <li  class="hotel-list--card" *ngFor="let hotel of searchResults  |
            paginate: {
-           itemsPerPage: apiBody.searchResults.pagination.nextPageStartIndex,
-           currentPage: pageNumber,
-           totalItems: apiBody.searchResults.totalCount
+             itemsPerPage: apiBody.searchResults.pagination.nextPageStartIndex,
+             currentPage: pageNumber,
+             totalItems: apiBody.searchResults.totalCount
             }"
            id="{{hotel.id}}"
       >

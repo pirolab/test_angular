@@ -42,6 +42,21 @@ export class BodyComponent  implements OnInit {
 
   getVisible($event : any) {this.isVisible = $event;}
 
+  showPage ($event : any){
+    this.isVisible = false;
+    let destId = $event.destinationId ? $event.destinationId : this.destinationId;
+    let params = `destinationId=${destId}&pageNumber=${$event.pageNumber}&pageSize=${this.pageSize}`
+    this.dataService.getData(params).subscribe((hotelData : any)  => {
+        this.searchResults = hotelData.data.body.searchResults.results;
+        this.apiBody = hotelData.data.body;
+        this.pageTitle = this.apiBody.header;
+        this.destinationId = $event.destinationId ? $event.destinationId : this.destinationId;
+        this.pageNumber = $event.pageNumber;
+      },
+      (err : any) => console.error(err),
+      () => this.isVisible = true);
+  }
+
   showDetail($event : any){
     this.isVisible = false;
     let params = `id=${$event.hotelId}`;
@@ -57,19 +72,4 @@ export class BodyComponent  implements OnInit {
       () => this.isVisible = true);
   }
 
-
-  showPage ( $event : any){
-    this.isVisible = false;
-    let destId = $event.destinationId ? $event.destinationId : this.destinationId;
-    let params = `destinationId=${destId}&pageNumber=${$event.pageNumber}&pageSize=${this.pageSize}`
-    this.dataService.getData(params).subscribe((hotelData : any)  => {
-        this.searchResults = hotelData.data.body.searchResults.results;
-        this.apiBody = hotelData.data.body;
-        this.pageTitle = this.apiBody.header;
-        this.destinationId = $event.destinationId ? $event.destinationId : this.destinationId;
-        this.pageNumber = $event.pageNumber;
-      },
-      (err : any) => console.error(err),
-      () => this.isVisible = true);
-  }
 }
