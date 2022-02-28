@@ -1,6 +1,11 @@
 <app-loader [pageIsvisible]="isVisible"></app-loader>
 
-<div class="test-body">
+<hotel-detail *ngIf="getDetail || getDetailImages"
+              [hotelDetailResults]="getDetail"
+              [hotelDetailImages]="getDetailImages"
+></hotel-detail>
+
+<div class="test-body" [ngClass]="this.setOverflow ? 'isHidden' : ''">
   <ng-container  *ngIf="searchResults">
 
     <hotel-search

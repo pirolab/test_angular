@@ -30,6 +30,7 @@ export class BodyComponent  implements OnInit {
   defaultDestId : number = Constants.API_DEST_ID;
   faLocationArrow = faLocationArrow;
   faArrowRight = faArrowRight;
+  setOverflow : boolean = false;
   @ViewChild('inputRef')inputRef!: ElementRef;
 
   constructor(private _http: HttpClient, private dataService : DataService){}
@@ -59,17 +60,24 @@ export class BodyComponent  implements OnInit {
 
   showDetail($event : any){
     this.isVisible = false;
+    //this.setOverflow = true;
     let params = `id=${$event.hotelId}`;
     this.dataService.getDetailImages(params).subscribe((hotelDetailImages : any)  => {
-      this.getDetailImages = hotelDetailImages.hotelImages;
-      console.log(this.getDetailImages)
+      this.getDetailImages = hotelDetailImages?.hotelImages;
+      for (let i = 0; i < this.getDetailImages.length; i++){
+        let hotelImagesUrl = (this.getDetailImages[i].baseUrl).replace("{size}", "y");
+        this.getDetailImages[i] = {
+          'image':hotelImagesUrl,
+        }
+      }
     });
     this.dataService.getDetails(params).subscribe((hotelDetail : any)  => {
         this.getDetail = hotelDetail.data.body.propertyDescription;
-        console.log(this.getDetail)
       },
       (err : any) => console.error(err),
-      () => this.isVisible = true);
+      () => {
+        this.isVisible = true;
+      });
   }
 
 }

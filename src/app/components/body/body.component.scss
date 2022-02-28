@@ -8,6 +8,10 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  &.isHidden{
+    overflow: hidden;
+    height: 80vh;
+  }
   h2{
     font-size: 1.6rem;
     padding: 15px 0;
@@ -178,8 +182,8 @@
           margin: 10px 0 ;
           cursor: pointer;
           width: 100%;
-          border-radius: 4px;
-          box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+          border-radius: 2px;
+          box-shadow: 0 2px 0px rgb(0 0 0 / 10%);
         }
       }
       &:hover{
@@ -188,3 +192,5 @@
     }
   }
 }
+
+

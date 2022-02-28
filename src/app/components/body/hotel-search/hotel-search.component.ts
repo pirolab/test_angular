@@ -23,7 +23,7 @@ export class HotelSearchComponent implements OnInit {
   defaultDestId : number = Constants.API_DEST_ID;
   searchResult : any;
   placeHolder : string = 'Search: name of countries, cities, districts, places, etc…';
-
+  message: string = '';
   @Input() destinationId : number | undefined;
   @Input() pageNumber : number| undefined;
   @Output() searchValue = new EventEmitter<any>();
@@ -45,8 +45,14 @@ export class HotelSearchComponent implements OnInit {
     this.isVisible.emit(false);
     let params = `query=${query}`
     this.dataService.searchData(params).subscribe((hotelSearch : any)  => {
-        this.searchResult = hotelSearch?.suggestions[0].entities || null;
-        this.searchValue.emit(this.searchResult);
+        this.searchResult = hotelSearch?.suggestions[0]?.entities || null;
+        if(this.searchResult.length === 0){
+          this.searchResult = '';
+          this.message = 'Sorry no matches found!';
+        } else {
+          this.message = '';
+          this.searchValue.emit(this.searchResult);
+        }
       },
       (err : any) => console.error(err),
       () => this.isVisible.emit(true));

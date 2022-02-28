@@ -10,6 +10,9 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { FormsModule } from "@angular/forms";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HotelSearchComponent } from "./components/body/hotel-search/hotel-search.component";
+import {HotelDetailComponent} from "./components/body/hotel-detail/hotel-detail.component";
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -19,15 +22,17 @@ import { HotelSearchComponent } from "./components/body/hotel-search/hotel-searc
     BodyComponent,
     FooterComponent,
     LoaderComponent,
-    HotelSearchComponent
+    HotelSearchComponent,
+    HotelDetailComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
-    FontAwesomeModule
-
+    FontAwesomeModule,
+    MatCarouselModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
