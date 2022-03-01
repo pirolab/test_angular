@@ -11,7 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HotelSearchComponent } from "./components/body/hotel-search/hotel-search.component";
 import {HotelDetailComponent} from "./components/body/hotel-detail/hotel-detail.component";
-import { MatCarouselModule } from '@ngbmodule/material-carousel';
+import { MatCarouselModule  } from 'material2-carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -31,7 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxPaginationModule,
     FormsModule,
     FontAwesomeModule,
-    MatCarouselModule,
+    MatCarouselModule ,
     BrowserAnimationsModule,
   ],
   providers: [],

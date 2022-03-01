@@ -27,7 +27,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding: 10px;
     border-radius: 8px;
     .image-wrapper{
@@ -56,23 +56,28 @@
 
     fa-icon{
       position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 25px;
-      height: 25px;
+      top: 15px;
+      right: 15px;
+      width: 30px;
+      height: 30px;
       border-radius: 50px;
       background: #ffffff;
       border: 1px solid #000000;
       text-align: center;
-      line-height: 25px;
-      font-size: 1rem;
+      line-height: 30px;
+      font-size: 1.1rem;
       margin: 0;
       padding: 0;
       cursor: pointer;
 
     }
     h2{
-      padding: 10px 0;
+      padding:0 0 3px;
+      font-size: 1.6rem;
+    }
+    span{
+      padding: 0 0 5px;
+    font-weight:600;
     }
   }
   &.isVisible{

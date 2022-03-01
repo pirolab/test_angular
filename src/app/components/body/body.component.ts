@@ -25,7 +25,7 @@ export class BodyComponent  implements OnInit {
   searchVal: any;
   pageTitle: string = '';
   pageNumber : number = 1;
-  destinationId : number = 10233105;
+  destinationId : number = 10874216;
   pageSize : number =  12;
   defaultDestId : number = Constants.API_DEST_ID;
   faLocationArrow = faLocationArrow;
@@ -65,7 +65,7 @@ export class BodyComponent  implements OnInit {
     this.dataService.getDetailImages(params).subscribe((hotelDetailImages : any)  => {
       this.getDetailImages = hotelDetailImages?.hotelImages;
       for (let i = 0; i < this.getDetailImages.length; i++){
-        let hotelImagesUrl = (this.getDetailImages[i].baseUrl).replace("{size}", "y");
+        let hotelImagesUrl = (this.getDetailImages[i].baseUrl).replace("{size}", "w");
         this.getDetailImages[i] = {
           'image':hotelImagesUrl,
         }

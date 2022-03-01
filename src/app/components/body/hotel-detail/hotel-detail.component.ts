@@ -6,7 +6,7 @@ import {
   ElementRef
 } from "@angular/core";
 import { faClose ,faRotateRight} from '@fortawesome/free-solid-svg-icons';
-import { MatCarousel, MatCarouselComponent } from '@ngbmodule/material-carousel';
+import { MatCarousel, MatCarouselComponent } from 'material2-carousel';
 
 
 @Component({
@@ -18,6 +18,7 @@ import { MatCarousel, MatCarouselComponent } from '@ngbmodule/material-carousel'
 })
 export class HotelDetailComponent implements OnInit {
   faClose = faClose;
+  indexId : number | any;
   @Input() hotelDetailResults : any;
   @Input() hotelDetailImages : any;
   @Input() setHidden : any;
@@ -27,10 +28,14 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit() {}
 
+  removeRow(index:number){
+    this.hotelDetailImages.splice(index,1);
+  }
 
   close(){
     this.hotelDetailResults = null;
     this.hotelDetailImages = null;
+
   }
 
 }

@@ -30,7 +30,9 @@
            id="{{hotel.id}}"
       >
         <ng-template [ngIf]="hotel.optimizedThumbUrls">
-          <div class="hotel-list--card_header" [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}">
+          <div class="hotel-list--card_header"
+               [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}"
+               (click)="showDetail({hotelId :hotel.id})">
           </div>
         </ng-template>
         <div class="hotel-list--card_body">

@@ -4,14 +4,13 @@
     <h2>
       {{hotelDetailResults?.name}}
     </h2>
-    <p>
+    <span>
       {{hotelDetailResults?.address?.addressLine1}} -
       {{hotelDetailResults?.address?.cityName}} -
-      {{hotelDetailResults?.address?.countryName}} </p>
+      {{hotelDetailResults?.address?.countryName}} </span>
 <!--    <div class="image-wrapper">-->
 <!--      <div class="image-grid" *ngFor="let item of hotelDetailImages "  [ngStyle]="{'background-image': 'url('+ item.image +')'}"></div>-->
 <!--    </div>-->
-
 
     <div style="width: 100%">
       <mat-carousel
@@ -25,14 +24,14 @@
         [hideIndicators]="true"
         [useKeyboard]="true"
         [useMouseWheel]="false"
+
         orientation="ltr"
-      >
+        *ngIf="hotelDetailImages">
         <mat-carousel-slide
           *ngFor="let slide of hotelDetailImages; let i = index"
           [image]="slide.image"
           overlayColor="#00000040"
-          [hideOverlay]="true"
-        >
+          [hideOverlay]="true">
           <span style="background:rgb(0 0 0 /50%); color:white; padding:5px 10px;">{{ i+1 }} of {{hotelDetailImages.length}}</span>
         </mat-carousel-slide>
       </mat-carousel>
