@@ -6,6 +6,6 @@ export class Constants {
   public static API_ENDPOINT_DETAIL: string = 'https://hotels4.p.rapidapi.com/properties/get-details';
   public static API_ENDPOINT_DETAIL_IMAGES: string = 'https://hotels4.p.rapidapi.com/properties/get-hotel-photos';
   public static API_BASE_URL: string = 'hotels4.p.rapidapi.com';
-  public static API_AUTH_KEY: string = 'ddf5024cc5msh52c125592ea35d2p17f5b4jsn3891ac8fdc84';
+  public static API_AUTH_KEY: string = 'Your Key';
   public static API_DEST_ID: number = 10233105;
 }
