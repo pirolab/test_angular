@@ -26,7 +26,7 @@ export class BodyComponent implements OnInit {
   searchVal: any;
   pageTitle: string = '';
   pageNumber: number = 1;
-  destinationId: number = 10874216;
+  destinationId: number = Constants.API_DEST_ID;
   pageSize: number = 12;
   defaultDestId: number = Constants.API_DEST_ID;
   faLocationArrow = faLocationArrow;
