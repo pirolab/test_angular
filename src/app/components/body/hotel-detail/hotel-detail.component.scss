@@ -30,6 +30,14 @@
     align-items: flex-start;
     padding: 16px;
     border-radius: 8px;
+    .show-imagesIndex {
+      background: rgb(0 0 0 /50%);
+      color: white;
+      padding: 5px 10px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
     .image-wrapper{
       display: flex;
       flex-direction: row;
@@ -92,4 +100,14 @@
 
 ::ng-deep .carousel-slide-content{
   cursor: default;
+}
+::ng-deep .carousel-indicators{
+  flex-wrap: wrap;
+  width: 100%;
+  & > button{
+    height: 20px!important;
+    margin: 4px!important;
+    width: 20px!important;
+    border-radius: 6px!important;
+  }
 }

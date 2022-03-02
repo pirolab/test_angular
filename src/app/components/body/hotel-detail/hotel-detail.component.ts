@@ -1,11 +1,9 @@
 import {
-  Component,
+  Component, EventEmitter,
   Input,
-  OnInit,
-  ViewChild,
-  ElementRef
+  OnInit, Output,
 } from "@angular/core";
-import { faClose ,faRotateRight} from '@fortawesome/free-solid-svg-icons';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { MatCarousel, MatCarouselComponent } from 'material2-carousel';
 
 
@@ -18,25 +16,19 @@ import { MatCarousel, MatCarouselComponent } from 'material2-carousel';
 })
 export class HotelDetailComponent implements OnInit {
   faClose = faClose;
-  cgindex : number | any;
+  currentSlideIndex = 0;
   @Input() hotelDetailResults : any;
   @Input() hotelDetailImages : any;
   @Input() setHidden : any;
-
 
   constructor( ){}
 
   ngOnInit() {}
 
-
-  removeRow(index:number){
-    this.hotelDetailImages.splice(index,1);
-  }
-
   close(){
     this.hotelDetailResults = null;
     this.hotelDetailImages = null;
-
+    this.currentSlideIndex = 0;
   }
 
 }

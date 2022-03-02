@@ -9,6 +9,7 @@ import {DataService} from "./body.service";
 import{ Constants } from '../../config/constants';
 import {faArrowRight, faLocationArrow} from '@fortawesome/free-solid-svg-icons';
 
+
 @Component({
   selector: 'bodyComponent',
   templateUrl:'./body.component.html',
@@ -43,6 +44,8 @@ export class BodyComponent  implements OnInit {
 
   getVisible($event : any) {this.isVisible = $event;}
 
+  isLoaded($event : any) {this.isVisible = $event;}
+
   showPage ($event : any){
     this.isVisible = false;
     let destId = $event.destinationId ? $event.destinationId : this.destinationId;
@@ -60,7 +63,6 @@ export class BodyComponent  implements OnInit {
 
   showDetail($event : any){
     this.isVisible = false;
-    //this.setOverflow = true;
     let params = `id=${$event.hotelId}`;
     this.dataService.getDetailImages(params).subscribe((hotelDetailImages : any)  => {
       this.getDetailImages = hotelDetailImages?.hotelImages;
@@ -75,9 +77,7 @@ export class BodyComponent  implements OnInit {
         this.getDetail = hotelDetail.data.body.propertyDescription;
       },
       (err : any) => console.error(err),
-      () => {
-        this.isVisible = true;
-      });
+      () => {this.isVisible = true});
   }
 
 }

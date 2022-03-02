@@ -7,6 +7,7 @@
   <div  class="choose-wrapper" *ngIf="searchResult">
     <h3>Chose your destination </h3>
     <span class="choose-button reset" (click)="resetSearch()">Reset search <fa-icon [icon]="faRotateRight"></fa-icon></span>
+    <!-- service service call TODO -->
     <span
       class="choose-button"
       *ngFor="let item of searchResult "

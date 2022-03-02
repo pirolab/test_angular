@@ -8,12 +8,10 @@
       {{hotelDetailResults?.address?.addressLine1}} -
       {{hotelDetailResults?.address?.cityName}} -
       {{hotelDetailResults?.address?.countryName}} </span>
-<!--    <div class="image-wrapper">-->
-<!--      <div class="image-grid" *ngFor="let item of hotelDetailImages "  [ngStyle]="{'background-image': 'url('+ item.image +')'}"></div>-->
-<!--    </div>-->
 
-    <div style="width: 100%">
+    <div style="width: 100%; position:relative;min-height: 200px">
       <mat-carousel
+        (change)="currentSlideIndex = $event"
         timings="250ms ease-in"
         [autoplay]="false"
         color="accent"
@@ -21,7 +19,7 @@
         proportion="70"
         [loop]="true"
         [hideArrows]="false"
-        [hideIndicators]="false"
+        [hideIndicators]="true"
         [useKeyboard]="true"
         [useMouseWheel]="false"
         orientation="ltr"
@@ -31,9 +29,10 @@
           [image]="slide.image"
           overlayColor="#00000040"
           [hideOverlay]="true">
-          <span style="background:rgb(0 0 0 /50%); color:white; padding:5px 10px;">image {{ i+1 }} of {{hotelDetailImages.length}}</span>
+
         </mat-carousel-slide>
       </mat-carousel>
+      <span class="show-imagesIndex" *ngIf="hotelDetailImages">image {{ currentSlideIndex+1 }} of {{hotelDetailImages?.length}}</span>
     </div>
 
   </div>

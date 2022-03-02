@@ -28,7 +28,7 @@ export class HotelSearchComponent implements OnInit {
   @Input() pageNumber : number| undefined;
   @Output() searchValue = new EventEmitter<any>();
   @Output() showPage = new EventEmitter<any>();
-  @Output() isVisible = new EventEmitter<any>();
+  @Output() pageIsVisible = new EventEmitter<any>();
   @ViewChild('inputRef')inputRef!: ElementRef;
 
   constructor( private dataService : DataService){}
@@ -42,7 +42,7 @@ export class HotelSearchComponent implements OnInit {
     this.searchResult = '';
   }
   searchHotel (query : string){
-    this.isVisible.emit(false);
+    this.pageIsVisible.emit(false);
     let params = `query=${query}`
     this.dataService.searchData(params).subscribe((hotelSearch : any)  => {
         this.searchResult = hotelSearch?.suggestions[0]?.entities || null;
@@ -55,7 +55,7 @@ export class HotelSearchComponent implements OnInit {
         }
       },
       (err : any) => console.error(err),
-      () => this.isVisible.emit(true));
+      () => this.pageIsVisible.emit(true));
   }
 
 }
