@@ -27,8 +27,7 @@
              currentPage: pageNumber,
              totalItems: apiBody.searchResults.totalCount
             }"
-           id="{{hotel.id}}"
-      >
+           id="{{hotel.id}}">
         <ng-template [ngIf]="hotel.optimizedThumbUrls">
           <div class="hotel-list--card_header"
                [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}"
