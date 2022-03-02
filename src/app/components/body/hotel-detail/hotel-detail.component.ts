@@ -18,7 +18,7 @@ import { MatCarousel, MatCarouselComponent } from 'material2-carousel';
 })
 export class HotelDetailComponent implements OnInit {
   faClose = faClose;
-  indexId : number | any;
+  cgindex : number | any;
   @Input() hotelDetailResults : any;
   @Input() hotelDetailImages : any;
   @Input() setHidden : any;
@@ -27,6 +27,7 @@ export class HotelDetailComponent implements OnInit {
   constructor( ){}
 
   ngOnInit() {}
+
 
   removeRow(index:number){
     this.hotelDetailImages.splice(index,1);

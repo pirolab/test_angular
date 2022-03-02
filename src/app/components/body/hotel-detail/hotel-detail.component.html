@@ -21,10 +21,9 @@
         proportion="70"
         [loop]="true"
         [hideArrows]="false"
-        [hideIndicators]="true"
+        [hideIndicators]="false"
         [useKeyboard]="true"
         [useMouseWheel]="false"
-
         orientation="ltr"
         *ngIf="hotelDetailImages">
         <mat-carousel-slide
@@ -32,7 +31,7 @@
           [image]="slide.image"
           overlayColor="#00000040"
           [hideOverlay]="true">
-          <span style="background:rgb(0 0 0 /50%); color:white; padding:5px 10px;">{{ i+1 }} of {{hotelDetailImages.length}}</span>
+          <span style="background:rgb(0 0 0 /50%); color:white; padding:5px 10px;">image {{ i+1 }} of {{hotelDetailImages.length}}</span>
         </mat-carousel-slide>
       </mat-carousel>
     </div>
