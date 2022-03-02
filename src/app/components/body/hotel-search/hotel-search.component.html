@@ -1,12 +1,13 @@
 <div class="search-wrapper">
-  <input type="text" class="searchInput"  placeholder="{{placeHolder}}"
+  <input type="text" class="searchInput" placeholder="{{placeHolder}}"
          #inputRef
          (keyup.enter)="searchHotel(inputRef.value)"
   />
   <span *ngIf="message">{{message}}</span>
-  <div  class="choose-wrapper" *ngIf="searchResult">
+  <div class="choose-wrapper" *ngIf="searchResult">
     <h3>Chose your destination </h3>
-    <span class="choose-button reset" (click)="resetSearch()">Reset search <fa-icon [icon]="faRotateRight"></fa-icon></span>
+    <span class="choose-button reset" (click)="resetSearch()">Reset search <fa-icon
+      [icon]="faRotateRight"></fa-icon></span>
     <!-- service service call TODO -->
     <span
       class="choose-button"

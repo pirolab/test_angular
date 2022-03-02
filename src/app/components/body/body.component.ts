@@ -5,79 +5,88 @@ import {
   ElementRef
 } from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {DataService} from "./body.service";
-import{ Constants } from '../../config/constants';
+import {DataService} from "../services/body.service";
+import {Constants} from '../../config/constants';
 import {faArrowRight, faLocationArrow} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
   selector: 'bodyComponent',
-  templateUrl:'./body.component.html',
-  styleUrls : ['./body.component.scss'],
+  templateUrl: './body.component.html',
+  styleUrls: ['./body.component.scss'],
 })
 
-export class BodyComponent  implements OnInit {
+export class BodyComponent implements OnInit {
   searchResults: any;
-  getDetail : any;
+  getDetail: any;
   getDetailImages: any;
   hotelId: any;
   apiBody: any;
   isVisible: boolean = true;
   searchVal: any;
   pageTitle: string = '';
-  pageNumber : number = 1;
-  destinationId : number = 10874216;
-  pageSize : number =  12;
-  defaultDestId : number = Constants.API_DEST_ID;
+  pageNumber: number = 1;
+  destinationId: number = 10874216;
+  pageSize: number = 12;
+  defaultDestId: number = Constants.API_DEST_ID;
   faLocationArrow = faLocationArrow;
   faArrowRight = faArrowRight;
-  setOverflow : boolean = false;
-  @ViewChild('inputRef')inputRef!: ElementRef;
+  setOverflow: boolean = false;
+  @ViewChild('inputRef') inputRef!: ElementRef;
 
-  constructor(private _http: HttpClient, private dataService : DataService){}
-
-  ngOnInit() {
-    this.showPage({ pageNumber:1, destinationId: this.destinationId });
+  constructor(private _http: HttpClient, private dataService: DataService) {
   }
 
-  getSearchVal($event : any) {this.searchVal = $event;}
+  ngOnInit() {
+    this.showPage({pageNumber: 1, destinationId: this.destinationId});
+  }
 
-  getVisible($event : any) {this.isVisible = $event;}
+  getSearchVal($event: any) {
+    this.searchVal = $event;
+  }
 
-  isLoaded($event : any) {this.isVisible = $event;}
+  getVisible($event: any) {
+    this.isVisible = $event;
+  }
 
-  showPage ($event : any){
+  isLoaded($event: any) {
+    this.isVisible = $event;
+  }
+
+  showPage($event: any) {
     this.isVisible = false;
     let destId = $event.destinationId ? $event.destinationId : this.destinationId;
     let params = `destinationId=${destId}&pageNumber=${$event.pageNumber}&pageSize=${this.pageSize}`
-    this.dataService.getData(params).subscribe((hotelData : any)  => {
+    this.dataService.getData(params).subscribe((hotelData: any) => {
         this.searchResults = hotelData.data.body.searchResults.results;
         this.apiBody = hotelData.data.body;
         this.pageTitle = this.apiBody.header;
         this.destinationId = $event.destinationId ? $event.destinationId : this.destinationId;
         this.pageNumber = $event.pageNumber;
       },
-      (err : any) => console.error(err),
+      (err: any) => console.error(err),
       () => this.isVisible = true);
   }
 
-  showDetail($event : any){
+  showDetail($event: any) {
     this.isVisible = false;
     let params = `id=${$event.hotelId}`;
-    this.dataService.getDetailImages(params).subscribe((hotelDetailImages : any)  => {
+    this.dataService.getDetailImages(params).subscribe((hotelDetailImages: any) => {
       this.getDetailImages = hotelDetailImages?.hotelImages;
-      for (let i = 0; i < this.getDetailImages.length; i++){
+      for (let i = 0; i < this.getDetailImages.length; i++) {
         let hotelImagesUrl = (this.getDetailImages[i].baseUrl).replace("{size}", "w");
         this.getDetailImages[i] = {
-          'image':hotelImagesUrl,
+          'image': hotelImagesUrl,
         }
       }
     });
-    this.dataService.getDetails(params).subscribe((hotelDetail : any)  => {
+    this.dataService.getDetails(params).subscribe((hotelDetail: any) => {
         this.getDetail = hotelDetail.data.body.propertyDescription;
       },
-      (err : any) => console.error(err),
-      () => {this.isVisible = true});
+      (err: any) => console.error(err),
+      () => {
+        this.isVisible = true
+      });
   }
 
 }

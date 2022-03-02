@@ -7,7 +7,7 @@ import {
   ViewChild,
   ElementRef,
 } from "@angular/core";
-import {DataService} from "../body.service";
+import {DataService} from "../../services/body.service";
 import { faLocationPin ,faRotateRight} from '@fortawesome/free-solid-svg-icons';
 import {Constants} from "../../../config/constants";
 

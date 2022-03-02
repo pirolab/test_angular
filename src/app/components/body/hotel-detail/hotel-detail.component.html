@@ -1,5 +1,5 @@
 <div class="detail-wrapper" [ngClass]="hotelDetailResults ? 'isVisible' : ''">
-  <div class="detail-container" >
+  <div class="detail-container">
     <fa-icon [icon]="faClose" (click)="close()"></fa-icon>
     <h2>
       {{hotelDetailResults?.name}}
@@ -8,8 +8,7 @@
       {{hotelDetailResults?.address?.addressLine1}} -
       {{hotelDetailResults?.address?.cityName}} -
       {{hotelDetailResults?.address?.countryName}} </span>
-
-    <div style="width: 100%; position:relative;min-height: 200px">
+    <div class="carousel-wrapper">
       <mat-carousel
         (change)="currentSlideIndex = $event"
         timings="250ms ease-in"
@@ -32,7 +31,9 @@
 
         </mat-carousel-slide>
       </mat-carousel>
-      <span class="show-imagesIndex" *ngIf="hotelDetailImages">image {{ currentSlideIndex+1 }} of {{hotelDetailImages?.length}}</span>
+      <span class="show-imagesIndex" *ngIf="hotelDetailImages">
+        {{ currentSlideIndex + 1 }} <small>of</small> {{hotelDetailImages?.length}}
+      </span>
     </div>
 
   </div>
