@@ -19,7 +19,10 @@ html, body {
 body{
   font-size: 85%;
 }
-
+.isHidden{
+  height: 100%;
+  overflow: hidden;
+}
 *, ::before, ::after {
   box-sizing: border-box;
   border-width: 0;

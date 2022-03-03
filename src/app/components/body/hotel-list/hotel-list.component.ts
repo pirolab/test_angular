@@ -4,6 +4,7 @@ import {
   Input,
   OnInit,
   Output,
+  Renderer2,
 } from "@angular/core";
 import {faArrowRight , faLocationArrow} from '@fortawesome/free-solid-svg-icons';
 import {HttpClient} from "@angular/common/http";
@@ -21,6 +22,7 @@ export class HotelListComponent implements OnInit {
   faLocationArrow = faLocationArrow;
   faArrowRight = faArrowRight;
   getDetail: any;
+  render : any;
   getDetailImages: any;
   @Input() destinationId : any;
   @Input() searchVal : any
@@ -32,12 +34,13 @@ export class HotelListComponent implements OnInit {
   @Output() showPage =   new EventEmitter<any>();
 
 
-  constructor(private _http: HttpClient, private dataService: DataService) {
+  constructor(private _http: HttpClient, private dataService: DataService , private renderer : Renderer2) {
   }
 
   ngOnInit() {}
 
   showDetail($event: any) {
+    this.renderer.addClass(document.body, 'isHidden' );
     this.isVisible.emit(false);
     let params = `id=${$event.hotelId}`;
     this.dataService.getDetailImages(params).subscribe((hotelDetailImages: any) => {
@@ -54,7 +57,7 @@ export class HotelListComponent implements OnInit {
       },
       (err: any) => console.error(err),
       () => {
-        this.isVisible.emit(true)
+        this.isVisible.emit(true);
       });
   }
 

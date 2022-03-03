@@ -1,4 +1,5 @@
 <div class="detail-wrapper" [ngClass]="hotelDetailResults ? 'isVisible' : ''">
+  <div class="detail-overlay" (click)="close()"></div>
   <div class="detail-container">
     <fa-icon [icon]="faClose" (click)="close()"></fa-icon>
     <h2>
