@@ -7,8 +7,6 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {DataService} from "../services/body.service";
 import {Constants} from '../../config/constants';
-import {faArrowRight, faLocationArrow} from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'bodyComponent',
@@ -18,8 +16,6 @@ import {faArrowRight, faLocationArrow} from '@fortawesome/free-solid-svg-icons';
 
 export class BodyComponent implements OnInit {
   searchResults: any;
-  getDetail: any;
-  getDetailImages: any;
   hotelId: any;
   apiBody: any;
   isVisible: boolean = true;
@@ -29,8 +25,6 @@ export class BodyComponent implements OnInit {
   destinationId: number = Constants.API_DEST_ID;
   pageSize: number = 12;
   defaultDestId: number = Constants.API_DEST_ID;
-  faLocationArrow = faLocationArrow;
-  faArrowRight = faArrowRight;
   setOverflow: boolean = false;
   @ViewChild('inputRef') inputRef!: ElementRef;
 
@@ -49,10 +43,6 @@ export class BodyComponent implements OnInit {
     this.isVisible = $event;
   }
 
-  isLoaded($event: any) {
-    this.isVisible = $event;
-  }
-
   showPage($event: any) {
     this.isVisible = false;
     let destId = $event.destinationId ? $event.destinationId : this.destinationId;
@@ -68,25 +58,5 @@ export class BodyComponent implements OnInit {
       () => this.isVisible = true);
   }
 
-  showDetail($event: any) {
-    this.isVisible = false;
-    let params = `id=${$event.hotelId}`;
-    this.dataService.getDetailImages(params).subscribe((hotelDetailImages: any) => {
-      this.getDetailImages = hotelDetailImages?.hotelImages;
-      for (let i = 0; i < this.getDetailImages.length; i++) {
-        let hotelImagesUrl = (this.getDetailImages[i].baseUrl).replace("{size}", "w");
-        this.getDetailImages[i] = {
-          'image': hotelImagesUrl,
-        }
-      }
-    });
-    this.dataService.getDetails(params).subscribe((hotelDetail: any) => {
-        this.getDetail = hotelDetail.data.body.propertyDescription;
-      },
-      (err: any) => console.error(err),
-      () => {
-        this.isVisible = true
-      });
-  }
 
 }

@@ -13,6 +13,7 @@ import { HotelSearchComponent } from "./components/body/hotel-search/hotel-searc
 import {HotelDetailComponent} from "./components/body/hotel-detail/hotel-detail.component";
 import { MatCarouselModule  } from 'material2-carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HotelListComponent} from "./components/body/hotel-list/hotel-list.component";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     LoaderComponent,
     HotelSearchComponent,
-    HotelDetailComponent
+    HotelDetailComponent,
+    HotelListComponent
   ],
   imports: [
     BrowserModule,

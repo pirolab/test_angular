@@ -17,7 +17,7 @@ export class DataService {
 
   constructor(private _http: HttpClient) {
   }
-
+  //http interceptor
   searchData(params: string): Observable<any> {
     return this._http.get(`${Constants.API_ENDPOINT_SEARCH}/?${params}`, this.requestOptions)
   }

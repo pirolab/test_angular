@@ -1,7 +1,7 @@
 import {
-  Component, EventEmitter,
+  Component,
   Input,
-  OnInit, Output,
+  OnInit,
 } from "@angular/core";
 import {faClose} from '@fortawesome/free-solid-svg-icons';
 import {MatCarousel, MatCarouselComponent} from 'material2-carousel';
@@ -21,11 +21,9 @@ export class HotelDetailComponent implements OnInit {
   @Input() hotelDetailImages: any;
   @Input() setHidden: any;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   close() {
     this.hotelDetailResults = null;

@@ -1,11 +1,7 @@
 <app-loader [pageIsvisible]="isVisible"></app-loader>
 
-<hotel-detail *ngIf="getDetail || getDetailImages"
-              [hotelDetailImages]="getDetailImages"
-              [hotelDetailResults]="getDetail"
-></hotel-detail>
-
 <div [ngClass]="this.setOverflow ? 'isHidden' : ''" class="test-body">
+
   <ng-container *ngIf="searchResults">
 
     <hotel-search
@@ -13,54 +9,20 @@
       (searchValue)="getSearchVal($event)"
       (showPage)="showPage($event)"
       [destinationId]="destinationId"
-      [pageNumber]="pageNumber">
-    </hotel-search>
+      [pageNumber]="pageNumber"></hotel-search>
 
     <h2>{{ pageTitle }}</h2>
 
-    <!-- hotelList.component  TODO -->
-    <ul *ngIf="searchResults" class="hotel-list">
-      <li *ngIf="searchVal && destinationId === defaultDestId" class="hotel-list--card_onSearch"></li>
-      <li *ngFor="let hotel of searchResults  |
-           paginate: {
-             itemsPerPage: apiBody.searchResults.pagination.nextPageStartIndex,
-             currentPage: pageNumber,
-             totalItems: apiBody.searchResults.totalCount
-            }" class="hotel-list--card"
-          id="{{hotel.id}}">
-        <ng-template [ngIf]="hotel.optimizedThumbUrls">
-          <div (click)="showDetail({hotelId :hotel.id})"
-               [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}"
-               class="hotel-list--card_header">
-          </div>
-        </ng-template>
-        <div class="hotel-list--card_body">
-          <h3>{{ hotel.name }}</h3>
-          <span>
-            <fa-icon [icon]="faLocationArrow"></fa-icon>
-            {{hotel.address.streetAddress }} - {{ hotel.address.locality }}
-          </span>
-        </div>
-        <div class="hotel-list--card_footer">
-          <div class="rating">
-            <span [ngClass]="'s'+hotel.starRating" class="score" title="Rating {{hotel.starRating}} of 5"></span>
-          </div>
-          <div class="price">
-            <small>From </small> {{ hotel.ratePlan?.price.current || '0' }}
-          </div>
-          <hr/>
-          <button (click)="showDetail({hotelId :hotel.id})" class="card-button">See Details
-            <fa-icon [icon]="faArrowRight"></fa-icon>
-          </button>
-        </div>
-      </li>
-    </ul>
-    <!-- /hotelList.component -->
+    <hotel-list
+      (isVisible)="getVisible($event)"
+      [searchVal]="searchVal"
+      [defaultDestId]="defaultDestId"
+      (showPage)="showPage($event)"
+      [destinationId]="destinationId"
+      [pageNumber]="pageNumber"
+      [searchResults]="searchResults"
+      [apiBody]="apiBody"></hotel-list>
 
-    <div style="text-align: center; font-size: 1rem;">
-      <pagination-controls
-        (pageChange)="showPage({pageNumber : $event, destId : this.destinationId})"></pagination-controls>
-    </div>
   </ng-container>
 
 </div>
