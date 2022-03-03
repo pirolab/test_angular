@@ -42,10 +42,11 @@
     .show-imagesIndex {
       background: rgb(0 0 0 /50%);
       color: white;
-      padding: 5px 10px;
+      padding: 6px 10px;
       position: absolute;
-      bottom: 0;
+      top: 0;
       right: 0;
+      z-index: 5;
     }
 
     .carousel-wrapper {
@@ -98,8 +99,9 @@
     }
 
     h2 {
-      padding: 0 0 3px;
+      padding: 0 30px 3px 0;
       font-size: 1.6rem;
+      line-height: 1;
     }
 
     span {
@@ -126,11 +128,21 @@
 ::ng-deep .carousel-indicators {
   flex-wrap: wrap;
   width: 100%;
+  bottom:0!important;
+  justify-content: center;
+  background: rgb(0 0 0 / 50%);
+  padding: 2px 0;
 
   & > button {
     height: 20px !important;
     margin: 4px !important;
     width: 20px !important;
-    border-radius: 6px !important;
+    border-radius: 50px !important;
+    background: white;
+    box-shadow: 0 0 3px rgb(0 0 0 / 50%);
+    &.mat-button-disabled {
+      cursor: default;
+      background: #2199e8;
+    }
   }
 }

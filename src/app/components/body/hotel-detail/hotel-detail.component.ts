@@ -18,6 +18,7 @@ import {MatCarousel, MatCarouselComponent} from 'material2-carousel';
 export class HotelDetailComponent implements OnInit {
   faClose = faClose;
   currentSlideIndex = 0;
+  slideLength : number = 12;
   @Input() hotelDetailResults: any;
   @Input() hotelDetailImages: any;
   @Input() setHidden: any;
