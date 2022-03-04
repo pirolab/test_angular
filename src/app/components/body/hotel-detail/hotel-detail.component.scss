@@ -130,12 +130,15 @@
   width: 100%;
   bottom:0!important;
   justify-content: center;
-  background: rgb(0 0 0 / 50%);
   padding: 2px 0;
+  display: none!important;
+  @media (min-width:768px){
+    display: flex!important;
+  }
 
   & > button {
     height: 20px !important;
-    margin: 4px !important;
+    margin: 6px !important;
     width: 20px !important;
     border-radius: 50px !important;
     background: white;
