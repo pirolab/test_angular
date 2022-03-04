@@ -19,7 +19,6 @@ export class HotelDetailComponent implements OnInit {
   faClose = faClose;
   currentSlideIndex = 0;
   slideLength : number = 12;
-  carouselShow : boolean = false;
   @Input() hotelDetailResults: any;
   @Input() hotelDetailImages: any;
   @Input() setHidden: any;
@@ -28,15 +27,11 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit() {}
 
-  callBack(){
-    this.carouselShow = true;
-  }
   close() {
     this.renderer.removeClass(document.body, 'isHidden' );
     this.hotelDetailResults = null;
     this.hotelDetailImages = null;
     this.currentSlideIndex = 0;
-    this.carouselShow = false;
   }
 
 }

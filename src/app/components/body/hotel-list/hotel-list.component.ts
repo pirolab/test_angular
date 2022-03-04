@@ -25,6 +25,7 @@ export class HotelListComponent implements OnInit {
   getDetail: any;
   render: any;
   getDetailImages: any;
+  imageSize: string = 'z';
   hotelDetail$: Observable<any>;
   hotelImages$: Observable<any>;
   @Input() destinationId: any;
@@ -41,19 +42,15 @@ export class HotelListComponent implements OnInit {
 
   ngOnInit() {}
 
-
   showDetail($event: any): any {
     this.renderer.addClass(document.body, 'isHidden');
     this.isVisible.emit(false);
     let params = `id=${$event.hotelId}`;
     this.dataService.getDetailImages(params).subscribe((hotelDetailImages: any) => {
       this.getDetailImages = hotelDetailImages?.hotelImages;
-      for (let i = 0; i < this.getDetailImages.length; i++) {
-        let hotelImagesUrl = (this.getDetailImages[i].baseUrl).replace("{size}", "y");
-        this.getDetailImages[i] = {
-          'image': hotelImagesUrl,
-        }
-      }
+      this.getDetailImages.forEach((item :any, index : number) => {
+        this.getDetailImages[index] = {'image': (item.baseUrl).replace('{size}' , this.imageSize),}
+      });
     });
     this.hotelDetail$ = this.dataService
       .getDetails(params)

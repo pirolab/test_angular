@@ -1,5 +1,4 @@
-<div class="detail-wrapper" [ngClass]="hotelDetailResults ? 'isVisible' : ''"
->
+<div class="detail-wrapper" [ngClass]="hotelDetailImages ? 'isVisible' : ''">
   <div class="detail-overlay" (click)="close()"></div>
   <div class="detail-container" *ngIf="hotelDetailResults">
     <fa-icon [icon]="faClose" (click)="close()"></fa-icon>
@@ -11,14 +10,6 @@
       {{hotelDetailResults?.address?.cityName}} -
       {{hotelDetailResults?.address?.countryName}} </span>
     <div class="carousel-wrapper" *ngIf="hotelDetailImages">
-
-      <img
-        style="display: none"
-        alt="test"
-        *ngFor="let slide of (hotelDetailImages ? hotelDetailImages.slice(0,slideLength): []);
-        let i = index"
-        [src]="slide.image"
-        (load)="callBack()">
 
       <mat-carousel
         (change)="currentSlideIndex = $event"
@@ -32,7 +23,7 @@
         [hideIndicators]="false"
         [useKeyboard]="true"
         [useMouseWheel]="false"
-        orientation="ltr" *ngIf="carouselShow">
+        orientation="ltr">
         <mat-carousel-slide
           *ngFor="let slide of (hotelDetailImages ? hotelDetailImages.slice(0,slideLength): []); let i = index"
           [image]="slide.image"
