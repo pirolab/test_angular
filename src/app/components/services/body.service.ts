@@ -26,11 +26,11 @@ export class DataService {
     return this._http.get(`${Constants.API_ENDPOINT_LIST}/?${params}`, this.requestOptions)
   }
 
-  getDetails(params: string) {
+  getDetails(params: string): Observable<any>  {
     return this._http.get(`${Constants.API_ENDPOINT_DETAIL}/?${params}`, this.requestOptions)
   }
 
-  getDetailImages(params: string) {
+  getDetailImages(params: string): Observable<any>  {
     return this._http.get(`${Constants.API_ENDPOINT_DETAIL_IMAGES}/?${params}`, this.requestOptions)
   }
 

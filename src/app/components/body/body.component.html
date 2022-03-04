@@ -1,28 +1,26 @@
-<app-loader [pageIsvisible]="isVisible"></app-loader>
-
 <div [ngClass]="this.setOverflow ? 'isHidden' : ''" class="test-body">
 
-  <ng-container *ngIf="searchResults">
 
-    <hotel-search
-      (pageIsVisible)="getVisible($event)"
-      (searchValue)="getSearchVal($event)"
-      (showPage)="showPage($event)"
-      [destinationId]="destinationId"
-      [pageNumber]="pageNumber"></hotel-search>
+      <hotel-search
+        (pageIsVisible)="getVisible($event)"
+        (searchValue)="getSearchVal($event)"
+        (showPage)="showPage($event)"
+        [destinationId]="destinationId"
+        [pageNumber]="pageNumber"></hotel-search>
 
-    <h2>{{ pageTitle }}</h2>
+  <div  *ngIf="(hotelResponse$ | async) as hotels">
+    <h2>{{hotels.header}}</h2>
 
-    <hotel-list
-      (isVisible)="getVisible($event)"
-      (showPage)="showPage($event)"
-      [searchVal]="searchVal"
-      [defaultDestId]="defaultDestId"
-      [destinationId]="destinationId"
-      [pageNumber]="pageNumber"
-      [searchResults]="searchResults"
-      [apiBody]="apiBody"></hotel-list>
+       <hotel-list
+          (isVisible)="getVisible($event)"
+          (showPage)="showPage($event)"
+          [searchVal]="searchVal"
+          [defaultDestId]="defaultDestId"
+          [destinationId]="destinationId"
+          [pageNumber]="pageNumber"
+          [searchResults]="hotels.searchResults.results"
+          [apiBody]="hotels"></hotel-list>
 
-  </ng-container>
-
+  </div>
+    <app-loader [pageIsvisible]="isVisible"></app-loader>
 </div>

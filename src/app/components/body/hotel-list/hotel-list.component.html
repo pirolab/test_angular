@@ -40,7 +40,6 @@
     (pageChange)="showPage.emit({pageNumber : $event, destId : this.destinationId})"></pagination-controls>
 </div>
 
-
-<hotel-detail *ngIf="getDetail || getDetailImages"
+<hotel-detail *ngIf="(hotelDetail$ | async) as details"
               [hotelDetailImages]="getDetailImages"
-              [hotelDetailResults]="getDetail"></hotel-detail>
+              [hotelDetailResults]="details"></hotel-detail>

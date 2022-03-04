@@ -7,6 +7,8 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {DataService} from "../services/body.service";
 import {Constants} from '../../config/constants';
+import {Subscription, Observable, map, tap} from "rxjs"
+
 
 @Component({
   selector: 'bodyComponent',
@@ -27,6 +29,8 @@ export class BodyComponent implements OnInit {
   defaultDestId: number = Constants.API_DEST_ID;
   setOverflow: boolean = false;
   @ViewChild('inputRef') inputRef!: ElementRef;
+  hotelResponse$: Observable<any>;
+
 
   constructor(private _http: HttpClient, private dataService: DataService) {
   }
@@ -43,20 +47,22 @@ export class BodyComponent implements OnInit {
     this.isVisible = $event;
   }
 
-  showPage($event: any) {
-    this.isVisible = false;
-    let destId = $event.destinationId ? $event.destinationId : this.destinationId;
-    let params = `destinationId=${destId}&pageNumber=${$event.pageNumber}&pageSize=${this.pageSize}`
-    this.dataService.getData(params).subscribe((hotelData: any) => {
-        this.searchResults = hotelData.data.body.searchResults.results;
-        this.apiBody = hotelData.data.body;
-        this.pageTitle = this.apiBody.header;
-        this.destinationId = $event.destinationId ? $event.destinationId : this.destinationId;
-        this.pageNumber = $event.pageNumber;
-      },
-      (err: any) => console.error(err),
-      () => this.isVisible = true);
-  }
 
+  showPage($event: any): any {
+    this.isVisible = false;
+    this.pageNumber = $event.pageNumber;
+    this.destinationId = $event.destinationId ? $event.destinationId : this.destinationId;
+    let params = `destinationId=${this.destinationId}&pageNumber=${this.pageNumber}&pageSize=${this.pageSize}`;
+    this.hotelResponse$ = this.dataService
+      .getData(params)
+      .pipe(
+        map(hotelData =>
+          hotelData.data.body
+        ),
+        tap({
+          complete: () => this.isVisible = true
+        }),
+      )
+  }
 
 }
