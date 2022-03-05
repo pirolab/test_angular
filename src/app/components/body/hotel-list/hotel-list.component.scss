@@ -110,7 +110,7 @@
 ::ng-deep li.pagination-previous {
   display: none!important;
   @media (min-width:768px){
-    display: inline-block;
+    display: inline-block!important;
   }
 
 }
