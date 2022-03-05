@@ -102,3 +102,15 @@
     }
   }
 }
+
+::ng-deep .ngx-pagination{
+  padding: 0;
+}
+::ng-deep li.pagination-next,
+::ng-deep li.pagination-previous {
+  display: none!important;
+  @media (min-width:768px){
+    display: inline-block;
+  }
+
+}

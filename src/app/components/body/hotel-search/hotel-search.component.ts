@@ -8,7 +8,7 @@ import {
   ElementRef,
 } from "@angular/core";
 import {DataService} from "../../services/body.service";
-import { faLocationPin ,faRotateRight} from '@fortawesome/free-solid-svg-icons';
+import { faLocationPin ,faRotateRight, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {Constants} from "../../../config/constants";
 
 @Component({
@@ -20,6 +20,7 @@ import {Constants} from "../../../config/constants";
 export class HotelSearchComponent implements OnInit {
   faLocationPin = faLocationPin;
   faRotateRight = faRotateRight;
+  faSearch = faSearch;
   defaultDestId : number = Constants.API_DEST_ID;
   searchResult : any;
   placeHolder : string = 'Search: name of countries, cities, districts, places, etc…';
@@ -42,6 +43,10 @@ export class HotelSearchComponent implements OnInit {
     this.searchResult = '';
   }
   searchHotel (query : string){
+    if(this.inputRef.nativeElement.value === ''){
+      this.message = 'Type something please!';
+      return
+    }
     this.pageIsVisible.emit(false);
     let params = `query=${query}`
     this.dataService.searchData(params).subscribe((hotelSearch : any)  => {

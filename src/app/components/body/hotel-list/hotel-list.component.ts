@@ -9,7 +9,7 @@ import {
 import {faArrowRight, faLocationArrow} from '@fortawesome/free-solid-svg-icons';
 import {HttpClient} from "@angular/common/http";
 import {DataService} from "../../services/body.service";
-import { Observable, map, tap} from "rxjs"
+import {Observable, map, tap} from "rxjs"
 
 @Component({
   selector: 'hotel-list',
@@ -40,16 +40,19 @@ export class HotelListComponent implements OnInit {
   constructor(private _http: HttpClient, private dataService: DataService, private renderer: Renderer2) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  showDetail($event: any): any {
+  showDetail($event: any) {
     this.renderer.addClass(document.body, 'isHidden');
     this.isVisible.emit(false);
     let params = `id=${$event.hotelId}`;
-    this.dataService.getDetailImages(params).subscribe((hotelDetailImages: any) => {
+    this.dataService
+      .getDetailImages(params)
+      .subscribe((hotelDetailImages: any) => {
       this.getDetailImages = hotelDetailImages?.hotelImages;
-      this.getDetailImages.forEach((item :any, index : number) => {
-        this.getDetailImages[index] = {'image': (item.baseUrl).replace('{size}' , this.imageSize),}
+      this.getDetailImages.forEach((item: any, index: number) => {
+        this.getDetailImages[index] = {'image': (item.baseUrl).replace('{size}', this.imageSize),}
       });
     });
     this.hotelDetail$ = this.dataService

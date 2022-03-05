@@ -1,8 +1,11 @@
 <div class="search-wrapper">
-  <input type="text" class="searchInput" placeholder="{{placeHolder}}"
-         #inputRef
-         (keyup.enter)="searchHotel(inputRef.value)"
-  />
+  <div class="input-wrapper">
+    <input type="text" class="search-input" placeholder="{{placeHolder}}" #inputRef (keyup.enter)="searchHotel(inputRef.value)" />
+    <button (click)="searchHotel(inputRef.value)" class="search-button">
+      <fa-icon
+      [icon]="faSearch"></fa-icon>
+    </button>
+  </div>
   <span *ngIf="message">{{message}}</span>
   <div class="choose-wrapper" *ngIf="searchResult">
     <h3>Chose your destination </h3>
