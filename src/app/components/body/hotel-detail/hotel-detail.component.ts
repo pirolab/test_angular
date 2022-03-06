@@ -22,6 +22,7 @@ export class HotelDetailComponent implements OnInit {
   @Input() hotelDetailResults: any;
   @Input() hotelDetailImages: any;
   @Input() setHidden: any;
+  @Input() viewType : boolean;
 
   constructor(private renderer : Renderer2) {}
 

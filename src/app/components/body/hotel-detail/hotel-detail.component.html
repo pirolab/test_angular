@@ -1,6 +1,6 @@
 <div class="detail-wrapper" [ngClass]="hotelDetailImages ? 'isVisible' : ''">
   <div class="detail-overlay" (click)="close()"></div>
-  <div class="detail-container" *ngIf="hotelDetailResults">
+  <div class="detail-container" *ngIf="hotelDetailResults" [ngClass]="viewType ? 'hasContent': ''">
     <fa-icon [icon]="faClose" (click)="close()"></fa-icon>
     <h2>
       {{hotelDetailResults?.name}}
@@ -17,7 +17,7 @@
         [autoplay]="false"
         color="accent"
         maxWidth="auto"
-        proportion="70"
+        [proportion]="viewType ? '40' : '65'"
         [loop]="true"
         [hideArrows]="false"
         [hideIndicators]="false"
@@ -35,7 +35,111 @@
         {{ currentSlideIndex + 1 }} <small>of</small> {{slideLength}}
       </span>
     </div>
-
+    <ng-container *ngIf="viewType">
+      <section class="_1_22qw" style="padding-top: 20px">
+        <div><h3>Tamaño del alojamiento</h3>
+          <ul>
+            <li>Este alojamiento tiene 268 habitaciones</li>
+            <li>Este alojamiento tiene 9 plantas</li>
+          </ul>
+          <h3>Entrada y salida</h3>
+          <p class="_3yAwmO">El 91&nbsp;% de los clientes está satisfecho con el proceso de registro de entrada en el
+            hotel</p>
+          <ul>
+            <li>Hora de entrada: 15:00-cualquier hora del día</li>
+            <li>Horario del registro de salida: 12:00</li>
+          </ul>
+          <h3>Restricciones relacionadas con tu viaje</h3>
+          <ul>
+            <li>En este destino pueden existir restricciones de viaje por COVID-19, incluidas restricciones específicas
+              relacionadas con el alojamiento. Antes de reservar, consulta las recomendaciones nacionales, locales y
+              sanitarias referentes a este destino.
+            </li>
+          </ul>
+          <h3>Instrucciones especiales de entrada</h3>
+          <div>El personal de recepción estará esperando a los huéspedes a su llegada. Para obtener más información,
+            ponte en contacto con el alojamiento usando los datos que aparecen en la confirmación de la reserva. Durante
+            el registro de entrada, el titular de la tarjeta de crédito utilizada al realizar la reserva deberá
+            presentar la tarjeta y un documento de identidad válido con fotografía.<br>
+            Durante el registro de entrada, el titular de la tarjeta de crédito utilizada al realizar la reserva deberá
+            presentar la tarjeta y un documento de identidad válido con fotografía. Antes de llegar, se debe haber
+            coordinado con el alojamiento cualquier otra gestión.<br>
+            Este establecimiento no permite los cambios de nombre en las reservas. El nombre de la reserva debe
+            coincidir con el nombre del huésped que se registra y se hospeda en el alojamiento. Se requiere un documento
+            de identidad con foto.<br>
+            Durante el registro de entrada, el titular de la tarjeta de crédito utilizada al realizar la reserva deberá
+            presentar la tarjeta y un documento de identidad válido con fotografía. Antes de llegar, se debe haber
+            coordinado con el alojamiento cualquier otra gestión.<br>
+            Este establecimiento no permite los cambios de nombre en las reservas. El nombre de la reserva debe
+            coincidir con el nombre del huésped que se registra y se hospeda en el alojamiento. Se requiere un documento
+            de identidad con foto.
+          </div>
+          <h3>Documentación para el registro de entrada</h3>
+          <ul>
+            <li>Es obligatorio presentar una tarjeta de crédito o de débito, o dejar un depósito en efectivo, para
+              posibles cargos adicionales.
+            </li>
+            <li>Pueden pedirte un documento de identidad válido.</li>
+            <li>La edad mínima para realizar el registro de entrada es de 18 años.</li>
+          </ul>
+          <h3>Mascotas</h3>
+          <ul>
+            <li>Se admiten mascotas (solo perros)*</li>
+            <li>Con restricciones*</li>
+            <li>Hasta 8 kg</li>
+          </ul>
+          <h3>Internet</h3>
+          <ul>
+            <li>Conexión wifi gratis en las zonas comunes</li>
+            <li>Conexión wifi gratis en las habitaciones</li>
+          </ul>
+          <h3>Aparcamiento</h3>
+          <ul>
+            <li>Aparcamiento sin asistencia vigilado y cubierto en las instalaciones (15 EUR por día)</li>
+            <li>Aparcamiento limitado en las instalaciones</li>
+            <li>Punto de recarga de coches eléctricos en las instalaciones</li>
+          </ul>
+          <h3>Información adicional</h3>
+          <ul>
+            <li>Establecimiento libre de humos</li>
+          </ul>
+        </div>
+      </section>
+      <div><h2>Lo mejor del alojamiento</h2>
+        <div class="_2cVsY2">
+          <div><h3>Servicios principales</h3>
+            <ul class="FWXvlZ _2WrGNz">
+              <li><span>268 habitaciones para no fumadores</span></li>
+              <li><span>Servicio de limpieza diario</span></li>
+              <li><span>Cerca de la playa</span></li>
+              <li><span>Restaurante y bar o lounge</span></li>
+              <li><span>Spa completo</span></li>
+              <li><span>Piscina al aire libre</span></li>
+            </ul>
+          </div>
+          <div><h3>Para familias</h3>
+            <ul class="FWXvlZ _2WrGNz">
+              <li><span>Camas supletorias (de pago)</span></li>
+              <li><span>Televisión</span></li>
+              <li><span>Productos de higiene personal gratis</span></li>
+              <li><span>Terraza</span></li>
+              <li><span>Limpieza de habitaciones diaria</span></li>
+              <li><span>Lavandería</span></li>
+            </ul>
+          </div>
+          <div><h3>Lugares de interés</h3>
+            <ul class="_2sHYiJ">
+              <li>En pleno centro de Palma de Mallorca</li>
+              <li>Catedral de Santa María de Palma: 20 min a pie</li>
+              <li>Plaza de España: 25 min a pie</li>
+              <li>Fundación Juan March: 23 min a pie</li>
+              <li>Mercado del Olivar: 24 min a pie</li>
+              <li>La Rambla: 24 min a pie</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 
 </div>

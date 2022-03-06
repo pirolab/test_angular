@@ -28,6 +28,7 @@ export class HotelListComponent implements OnInit {
   imageSize: string = 'z';
   hotelDetail$: Observable<any>;
   hotelImages$: Observable<any>;
+  viewType : boolean = true;
   @Input() destinationId: any;
   @Input() searchVal: any
   @Input() pageNumber: any;

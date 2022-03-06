@@ -15,9 +15,9 @@
   .detail-overlay {
     position: absolute;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
     background: rgb(255 255 255  /70%);
     z-index: 3;
   }
@@ -39,7 +39,14 @@
     align-items: flex-start;
     padding: 16px;
     border-radius: 2px;
-    position: relative;
+    position: absolute;
+    &.hasContent{
+      top: 0;
+      height: auto;
+      overflow: auto;
+      max-height: 100vh;
+      flex-wrap: nowrap;
+    }
 
     .show-imagesIndex {
       background: rgb(0 0 0 /50%);
@@ -57,11 +64,8 @@
       transition-property: opacity;
       width: 100%;
       position: relative;
-      min-height: 30vh;
-      @media (min-width: 768px){
-        min-height: 50vh;
-      }
       opacity: 0;
+
     }
 
     .image-wrapper {

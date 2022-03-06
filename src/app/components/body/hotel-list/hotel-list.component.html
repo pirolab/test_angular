@@ -8,7 +8,7 @@
             }" class="hotel-list--card"
       [id]="hotel.id">
     <ng-template [ngIf]="hotel.optimizedThumbUrls">
-      <div (click)="showDetail({hotelId :hotel.id})"
+      <div (click)="showDetail({hotelId :hotel.id}); viewType = false"
            [ngStyle]="{'background-image': 'url('+ hotel.optimizedThumbUrls.srpDesktop +')'}"
            class="hotel-list--card_header">
       </div>
@@ -28,7 +28,7 @@
         <small>From </small> {{ hotel.ratePlan?.price.current || '0' }}
       </div>
       <hr/>
-      <button (click)="showDetail({hotelId :hotel.id})" class="card-button">See Details
+      <button (click)="showDetail({hotelId :hotel.id}); viewType = true" class="card-button">See Details
         <fa-icon [icon]="faArrowRight"></fa-icon>
       </button>
     </div>
@@ -42,4 +42,5 @@
 
 <hotel-detail *ngIf="(hotelDetail$ | async) as details"
               [hotelDetailImages]="getDetailImages"
-              [hotelDetailResults]="details"></hotel-detail>
+              [hotelDetailResults]="details"
+              [viewType]="viewType"></hotel-detail>
