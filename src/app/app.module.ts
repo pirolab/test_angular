@@ -14,7 +14,7 @@ import {HotelDetailComponent} from "./components/body/hotel-detail/hotel-detail.
 import { MatCarouselModule  } from 'material2-carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HotelListComponent} from "./components/body/hotel-list/hotel-list.component";
-
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import {HotelListComponent} from "./components/body/hotel-list/hotel-list.compon
     FontAwesomeModule,
     MatCarouselModule ,
     BrowserAnimationsModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

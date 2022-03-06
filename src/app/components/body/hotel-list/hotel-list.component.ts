@@ -37,10 +37,17 @@ export class HotelListComponent implements OnInit {
   @Output() isVisible = new EventEmitter<any>();
   @Output() showPage = new EventEmitter<any>();
 
-  constructor(private _http: HttpClient, private dataService: DataService, private renderer: Renderer2) {
+  constructor(private dataService: DataService, private renderer: Renderer2) {
   }
 
   ngOnInit() {
+  }
+
+  parseImg (array : any){
+    this.getDetailImages = array;
+    this.getDetailImages.forEach((item: any, index: number) => {
+      this.getDetailImages[index] = {'image': (item.baseUrl).replace('{size}', this.imageSize),}
+    });
   }
 
   showDetail($event: any) {
@@ -50,10 +57,7 @@ export class HotelListComponent implements OnInit {
     this.dataService
       .getDetailImages(params)
       .subscribe((hotelDetailImages: any) => {
-      this.getDetailImages = hotelDetailImages?.hotelImages;
-      this.getDetailImages.forEach((item: any, index: number) => {
-        this.getDetailImages[index] = {'image': (item.baseUrl).replace('{size}', this.imageSize),}
-      });
+        this.parseImg(hotelDetailImages?.hotelImages)
     });
     this.hotelDetail$ = this.dataService
       .getDetails(params)

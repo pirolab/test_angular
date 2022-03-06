@@ -47,9 +47,15 @@ export class BodyComponent implements OnInit {
     this.isVisible = $event;
   }
 
+  getFakeList(count: number): Array<number> {
+    const indexes = [];
+    for (let i = 0; i < count; i++) {
+      indexes.push(i);
+    }
+    return indexes;
+  }
 
   showPage($event: any): any {
-    this.isVisible = false;
     this.pageNumber = $event.pageNumber;
     this.destinationId = $event.destinationId ? $event.destinationId : this.destinationId;
     let params = `destinationId=${this.destinationId}&pageNumber=${this.pageNumber}&pageSize=${this.pageSize}`;
@@ -58,10 +64,7 @@ export class BodyComponent implements OnInit {
       .pipe(
         map(hotelData =>
           hotelData.data.body
-        ),
-        tap({
-          complete: () => this.isVisible = true
-        }),
+        )
       )
   }
 

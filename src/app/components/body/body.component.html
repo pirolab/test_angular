@@ -1,26 +1,46 @@
 <div [ngClass]="this.setOverflow ? 'isHidden' : ''" class="test-body">
 
+  <hotel-search
+    (pageIsVisible)="getVisible($event)"
+    (searchValue)="getSearchVal($event)"
+    (showPage)="showPage($event)"
+    [destinationId]="destinationId"
+    [pageNumber]="pageNumber"></hotel-search>
 
-      <hotel-search
-        (pageIsVisible)="getVisible($event)"
-        (searchValue)="getSearchVal($event)"
-        (showPage)="showPage($event)"
-        [destinationId]="destinationId"
-        [pageNumber]="pageNumber"></hotel-search>
 
-  <div  *ngIf="(hotelResponse$ | async) as hotels">
+  <ng-container *ngIf="(hotelResponse$ | async) as hotels; else elseTemplate">
     <h2>{{hotels.header}}</h2>
+    <hotel-list
+      (isVisible)="getVisible($event)"
+      (showPage)="showPage($event)"
+      [searchVal]="searchVal"
+      [defaultDestId]="defaultDestId"
+      [destinationId]="destinationId"
+      [pageNumber]="pageNumber"
+      [searchResults]="hotels.searchResults.results"
+      [apiBody]="hotels"></hotel-list>
 
-       <hotel-list
-          (isVisible)="getVisible($event)"
-          (showPage)="showPage($event)"
-          [searchVal]="searchVal"
-          [defaultDestId]="defaultDestId"
-          [destinationId]="destinationId"
-          [pageNumber]="pageNumber"
-          [searchResults]="hotels.searchResults.results"
-          [apiBody]="hotels"></hotel-list>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <h2><ngx-skeleton-loader [theme]="{ height: '30px', width: '70%'}"></ngx-skeleton-loader></h2>
+    <ul class="hotel-list-fake">
+      <li class="hotel-list-fake--card" *ngFor="let item of getFakeList(pageSize)">
+        <ngx-skeleton-loader [theme]="{ height: '333px', width: '100%'}"></ngx-skeleton-loader>
+      </li>
+    </ul>
+    <div style="text-align: center">
+      <ngx-skeleton-loader [theme]="{ height: '25px', width: '80px' , marginRight: '5px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{ height: '25px', width: '30px', marginRight: '5px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{ height: '25px', width: '30px', marginRight: '5px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{ height: '25px', width: '30px', marginRight: '5px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{ height: '25px', width: '30px', marginRight: '5px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{ height: '25px', width: '30px', marginRight: '5px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{ height: '25px', width: '30px', marginRight: '5px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{ height: '25px', width: '80px'}"></ngx-skeleton-loader>
+    </div>
+  </ng-template>
 
-  </div>
-    <app-loader [pageIsvisible]="isVisible"></app-loader>
+  <app-loader [pageIsvisible]="isVisible"></app-loader>
+
 </div>
+

@@ -19,7 +19,33 @@
     padding: 15px 0;
     text-align: center;
   }
-
+  .hotel-list-fake{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style-type: none;
+    &--card{
+      width: 100%;
+      position: relative;
+      margin-bottom: 5px;
+      @media (min-width: 600px) {
+        width: 48%;
+      }
+      @media (min-width: 1024px) {
+        width: 31.3333%;
+      }
+      @media (min-width: 1280px) {
+        width: 23%;
+      }
+      @media (min-width: 1550px) {
+        width: 23%;
+      }
+    }
+  }
 }
 
 

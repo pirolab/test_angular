@@ -66,7 +66,7 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-
+      justify-content: center;
       .rating,
       .price {
         width: 50%;
@@ -81,19 +81,29 @@
 
       .card-button {
         background: white;
-        border: 1px solid #ddd;
+        border: 1px solid #eee;
         color: #666;
         font-weight: 400;
-        padding: 12px;
+        padding: 15px;
         text-align: center;
         text-decoration: none;
         font-size: .7rem;
         text-transform: uppercase;
         margin: 10px 0;
         cursor: pointer;
-        width: 100%;
-        border-radius: 2px;
-        box-shadow: 0 2px 0px rgb(0 0 0 / 10%);
+        width: 80%;
+        border-radius: 8px;
+        box-shadow: 0 1px #0000001a;
+        transition: all .2s;
+        fa-icon{
+          transition: all .2s;
+        }
+        &:hover{
+          border: 1px solid #aaa;
+          & fa-icon{
+            padding-left: 10px;
+          }
+        }
       }
     }
 
