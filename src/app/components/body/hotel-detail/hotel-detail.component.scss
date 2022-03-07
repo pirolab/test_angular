@@ -147,6 +147,17 @@
   0% {opacity:0;}
   100% {opacity:1;}
 }
+
+::ng-deep  .mat-icon-button {
+  background: rgb(255 255 255 /60%);
+  color: black;
+  left: auto;
+  right: 5px!important;
+  &:first-of-type{
+    left: 5px!important;
+    right: auto!important;
+  }
+}
 ::ng-deep .carousel-list{
   animation: fadeIn 4s;
   -webkit-animation: fadeIn 4s;

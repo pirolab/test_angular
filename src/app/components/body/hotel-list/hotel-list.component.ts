@@ -28,7 +28,7 @@ export class HotelListComponent implements OnInit {
   imageSize: string = 'z';
   hotelDetail$: Observable<any>;
   hotelImages$: Observable<any>;
-  viewType : boolean = true;
+  viewType: boolean = true;
   @Input() destinationId: any;
   @Input() searchVal: any
   @Input() pageNumber: any;
@@ -44,7 +44,7 @@ export class HotelListComponent implements OnInit {
   ngOnInit() {
   }
 
-  parseImg (array : any){
+  parseImg(array: any) {
     this.getDetailImages = array;
     this.getDetailImages.forEach((item: any, index: number) => {
       this.getDetailImages[index] = {'image': (item.baseUrl).replace('{size}', this.imageSize),}
@@ -59,7 +59,7 @@ export class HotelListComponent implements OnInit {
       .getDetailImages(params)
       .subscribe((hotelDetailImages: any) => {
         this.parseImg(hotelDetailImages?.hotelImages)
-    });
+      });
     this.hotelDetail$ = this.dataService
       .getDetails(params)
       .pipe(
